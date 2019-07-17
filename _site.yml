@@ -1,0 +1,40 @@
+name: "my-website"
+navbar:
+  title: "Ontología Liniero"
+  left:
+    - text: "Home"
+      href: index.html
+      icon: fa-home
+    - text: "Procedimiento"
+      href: about.html
+      icon: "fa-keyboard"
+      menu:
+        - text: "1. Extracción y limpieza de datos"
+          href: page-a.html
+        - text: ""
+        - text: "2- Generación de la bolsa de palabras (Matriz DTM)"
+          href: page-b.html
+        - text: ""
+        - text: "3. Reducción de documentos (Jaccard Similarity)"
+          href: a.html
+        - text: ""
+        - text: "4. K óptimo (Cosine Similarity)"
+          href: as.html
+        - text: ""
+        - text: "5. Selección top 5 palabras"
+          href: sa.html
+        - text: ""
+        - text: "6. Calculo de la matriz NGD (Normalized Google Distance)"
+          href: ds.html
+        - text: ""
+        - text: "7. Agrupamiento jerárquico por clusters"
+          href: d.html
+        - text: ""
+        - text: "8. Agrupamiento jerárquico por documentos"
+          href: sd.html
+
+  right:
+    - text: "Contacto"
+      href: https://example.com
+      icon: "fa-envelope"
+      
