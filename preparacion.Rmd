@@ -1,0 +1,70 @@
+---
+title: "Desarrollo de una herramienta de Machine Learning para el aprovechamiento de información en texto del entrenamiento del personal del sector energético."
+author:
+- Guillermo Santamaría^[Instituto de Electricidad y Energías Limpias , guillermo.santamaria@ineel.mx]
+- Daniel Díaz^[Universidad de Colima, hdiaz6@ucol.mx]
+date: "Julio, 2019"
+output:
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+---
+
+<style type="text/css">
+
+
+h1.title {
+  font-size: 32px;
+}
+h1 { /* Header 1 */
+  font-size: 28px;
+}
+h2 { /* Header 2 */
+  font-size: 22px;
+}
+h3 { /* Header 3 */
+  font-size: 18px;
+}
+
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+-----------
+
+# Introducción
+Antes de comenzar con el proceso debemos cargar todas las librerias que se utilizaran a lo largo del proyecto.
+
+# Dataset
+Antes que nada cargamos el paquete de *easypackages* que nos permite cargar e instalar paquetes con una sola instrucción.
+
+```{r cache=TRUE}
+# Si no se tiene instalado
+# install.packages("easypackages")
+
+library(easypackages)
+
+```
+
+## Tercera
+
+Colocamos todos los paquetes en un vector y lo pasamos como parámetro a la función de *librearies*.
+
+```{r echo=TRUE, results='hide', message=FALSE, warning=FALSE, cache=TRUE}
+# Todos los paquetes que se necesitan
+paquetes <- c("tm", "RWeka", "ggplot2", "tidyr", "tibble", "dplyr", "corrplot",
+              "httr", "clValid", "msos", "clusterSim", "tidytext", "wordcloud",
+              "stats", "jaccard", "lsa", "gtools", "tidyverse", "MASS","RCurl",
+              "XML")
+
+# Si queremos todos los paquetes
+# packages(paquetes)
+
+# Si queremos cargarlos
+libraries(paquetes)
+```
+

@@ -1,0 +1,31 @@
+---
+title: "Home"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Creación de ontología
+
+En este documento se desarrollan los procedimientos para realizar una ontología en el lenguaje R. Los diferentes procedimientos utilizados se pueden observar dentro de la pestaña de **Procedimientos**.
+
+El pipeline con el cual se desarrolla el proyecto es la siguiente:
+
+
+```{r cars}
+print("Aqui va el pipeline")
+```
+
+
+Los procedimientos están separados para poder hacer énfasis en cada paso clave dentro del pipeline, es importante seguir los pasos en el orden que están.
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

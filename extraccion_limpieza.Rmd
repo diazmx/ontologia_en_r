@@ -1,0 +1,93 @@
+---
+title: "Extracción y Limpieza"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Extracción de los datos
+
+El data set utilizados corresponde a las herramientas, equipamiento y materiales requeridos para las maniobras de mantenimiento en la infraestructura de media tensión, se puede encontrar en la sección de *Preparación*.
+
+Se extrajo el nombre de los equipos y su identificador numérico.
+
+```{r echo=FALSE, results='hide', warning=FALSE, message=FALSE}
+library(dplyr)
+library(tm)
+```
+
+
+
+```{r echo=TRUE}
+# Cargamos los datos, pasamos con parametro a la funcion de "load"
+# la dirección donde se encuentran los datos
+load("data/equipment.Rda")
+
+# Se genera un data frame con los datos el nombre de los 
+# equipos y su identificador
+equipo <- as.data.frame(equipment$id_equip)
+
+equipo <- equipo %>%
+  mutate(equipment$equip_name) %>%
+  setNames(c("doc_id","text"))
+
+```
+
+El data frame quedaría algo así:
+
+```{r echo=FALSE}
+head(equipo)
+```
+
+## Limpieza de los datos
+
+Primero quitamos los acentos y convertimos el Data Frame en un corpus.
+
+```{r}
+
+# Quitamos los acentos
+equipo$text <- chartr('áéíóúñ','aeioun',equipo$text)
+
+# Se convierte el DF en corpus
+docs <- VCorpus(DataframeSource(equipo))
+
+```
+
+Una vez que se convierte en corpus es más fácil limpiar los datos con las herramientas que ofrece la libreria de *tm*.
+
+```{r}
+docs <- docs %>%
+  # Convertimos a minusculas
+  tm_map(content_transformer(tolower)) %>%
+  # Removemos palabras que incluyan palabras y números
+  tm_map(content_transformer(remove.alfa_num)) %>%
+  # Removemos números
+  tm_map(removeNumbers) %>%
+  # Removemos la puntuación
+  tm_map(removePunctuation) %>%
+  # Removemos las medidas
+  tm_map(content_transformer(remove.measure)) %>%
+  # Removemos las stopwords
+  tm_map(removeWords, stopwords("spanish")) %>%
+  # Removemos espacion en blanco
+  tm_map(stripWhitespace)
+```
+
+```{r echo=FALSE}
+head(docs)
+```
+
+
+```{r}
+
+# Creamos la DTM
+dtm <- DocumentTermMatrix(docs, control=list(tokenize=Uni_to_Tri_Tokenize))
+View(as.matrix(dtm))
+
+# Creamos un objeto con la matriz dtm
+matriz.dtm <- as.matrix(dtm)
+### Aquí se genera la DTM con la que estaremos trabajando
+```
+
